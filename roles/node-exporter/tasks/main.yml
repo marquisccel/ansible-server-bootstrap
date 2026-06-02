@@ -43,8 +43,3 @@
     state: started
     daemon_reload: true
 
-handlers:
-  - name: Restart node-exporter
-    systemd:
-      name: node-exporter
-      state: restarted
