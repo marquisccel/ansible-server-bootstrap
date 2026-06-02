@@ -1,0 +1,39 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Deploy app reverse proxy config
+  template:
+    src: app.conf.j2
+    dest: /etc/nginx/sites-available/app.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload nginx
+
+- name: Enable site
+  file:
+    src: /etc/nginx/sites-available/app.conf
+    dest: /etc/nginx/sites-enabled/app.conf
+    state: link
+  notify: Reload nginx
+
+- name: Remove default site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: Reload nginx
+
+- name: Enable and start Nginx
+  systemd:
+    name: nginx
+    enabled: true
+    state: started
+
+handlers:
+  - name: Reload nginx
+    systemd:
+      name: nginx
+      state: reloaded

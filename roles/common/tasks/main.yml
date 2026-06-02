@@ -1,0 +1,22 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Upgrade all packages
+  apt:
+    upgrade: safe
+
+- name: Install common packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+
+- name: Set timezone
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Remove useless packages
+  apt:
+    autoremove: true

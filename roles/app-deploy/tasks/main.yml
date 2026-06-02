@@ -1,0 +1,28 @@
+---
+- name: Create app directory
+  file:
+    path: /opt/uptime-monitor
+    state: directory
+    owner: "{{ ssh_user }}"
+    group: "{{ ssh_user }}"
+    mode: "0755"
+
+- name: Deploy docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/uptime-monitor/docker-compose.yml
+    owner: "{{ ssh_user }}"
+    group: "{{ ssh_user }}"
+    mode: "0644"
+
+- name: Pull latest app image
+  community.docker.docker_image:
+    name: "{{ app_image }}"
+    source: pull
+  become_user: "{{ ssh_user }}"
+
+- name: Start app with Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: /opt/uptime-monitor
+    state: present
+  become_user: "{{ ssh_user }}"

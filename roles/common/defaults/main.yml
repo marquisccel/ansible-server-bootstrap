@@ -1,0 +1,11 @@
+---
+timezone: Asia/Jakarta
+packages:
+  - curl
+  - wget
+  - git
+  - unzip
+  - htop
+  - net-tools
+  - ca-certificates
+  - gnupg

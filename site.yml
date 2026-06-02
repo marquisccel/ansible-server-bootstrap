@@ -1,0 +1,26 @@
+---
+- name: Bootstrap server
+  hosts: all
+  become: true
+
+  roles:
+    - role: common
+      tags: [common]
+
+    - role: ssh-hardening
+      tags: [ssh]
+
+    - role: ufw
+      tags: [ufw, firewall]
+
+    - role: docker
+      tags: [docker]
+
+    - role: nginx
+      tags: [nginx]
+
+    - role: node-exporter
+      tags: [monitoring, node-exporter]
+
+    - role: app-deploy
+      tags: [app]

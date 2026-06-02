@@ -1,0 +1,41 @@
+---
+- name: Install ufw
+  apt:
+    name: ufw
+    state: present
+
+- name: Set default policies
+  ufw:
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+  loop:
+    - { direction: incoming, policy: deny }
+    - { direction: outgoing, policy: allow }
+
+- name: Allow SSH
+  ufw:
+    rule: allow
+    port: "{{ ssh_port }}"
+    proto: tcp
+
+- name: Allow HTTP
+  ufw:
+    rule: allow
+    port: "80"
+    proto: tcp
+
+- name: Allow HTTPS
+  ufw:
+    rule: allow
+    port: "443"
+    proto: tcp
+
+- name: Allow Node Exporter
+  ufw:
+    rule: allow
+    port: "{{ node_exporter_port }}"
+    proto: tcp
+
+- name: Enable ufw
+  ufw:
+    state: enabled

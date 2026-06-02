@@ -1,0 +1,12 @@
+# SSH
+ssh_port: 22
+ssh_user: vagrant
+
+# App
+app_image: ghcr.io/egayurcel990/go-uptime-monitor:latest
+app_port: 8080
+app_domain: "192.168.56.10"
+
+# Monitoring
+node_exporter_port: 9100
+node_exporter_version: "1.7.0"
