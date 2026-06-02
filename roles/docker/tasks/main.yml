@@ -40,3 +40,6 @@
     name: "{{ ssh_user }}"
     groups: docker
     append: true
+
+- name: Reset SSH connection after docker group change
+  meta: reset_connection

@@ -16,13 +16,13 @@
     mode: "0644"
 
 - name: Pull latest app image
+  become: true
   community.docker.docker_image:
     name: "{{ app_image }}"
     source: pull
-  become_user: "{{ ssh_user }}"
 
 - name: Start app with Docker Compose
+  become: true
   community.docker.docker_compose_v2:
     project_src: /opt/uptime-monitor
     state: present
-  become_user: "{{ ssh_user }}"
