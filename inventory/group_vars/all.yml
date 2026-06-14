@@ -3,7 +3,7 @@ ssh_port: 22
 ssh_user: vagrant
 
 # App
-app_image: ghcr.io/egayurcel990/go-uptime-monitor:latest
+app_image: ghcr.io/marquisccel/go-uptime-monitor:latest
 app_port: 8080
 
 # Monitoring
