@@ -18,7 +18,7 @@
 
 This repository is the infrastructure side of a DevOps and SysAdmin portfolio lab.
 
-It deploys [`go-uptime-monitor`](https://github.com/egayurcel990/go-uptime-monitor), a self-hosted uptime monitoring service, onto a Linux server using repeatable Ansible roles.
+It deploys [`go-uptime-monitor`](https://github.com/marquisccel/go-uptime-monitor), a self-hosted uptime monitoring service, onto a Linux server using repeatable Ansible roles.
 
 The goal is to show a practical server lifecycle:
 
@@ -119,7 +119,7 @@ On Windows, run Ansible from WSL because Ansible does not run natively on Window
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/egayurcel990/ansible-server-bootstrap
+git clone https://github.com/marquisccel/ansible-server-bootstrap
 cd ansible-server-bootstrap
 ```
 
@@ -225,7 +225,7 @@ ssh_port: 22
 ssh_user: vagrant
 
 # App
-app_image: ghcr.io/egayurcel990/go-uptime-monitor:latest
+app_image: ghcr.io/marquisccel/go-uptime-monitor:latest
 app_port: 8080
 
 # Monitoring
